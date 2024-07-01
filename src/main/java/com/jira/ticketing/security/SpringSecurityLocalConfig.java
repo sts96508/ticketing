@@ -7,4 +7,5 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @EnableAutoConfiguration(exclude = { SecurityAutoConfiguration.class })
 public class SpringSecurityLocalConfig {
+
 }
