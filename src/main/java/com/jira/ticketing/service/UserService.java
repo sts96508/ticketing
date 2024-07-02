@@ -6,7 +6,9 @@ import com.jira.ticketing.entity.dto.UserUpdateDto;
 import com.jira.ticketing.exception.UserNotFoundException;
 import com.jira.ticketing.mapper.UserMapper;
 import com.jira.ticketing.repository.UserRepository;
+import com.jira.ticketing.utils.BCryptUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -23,12 +25,17 @@ public class UserService {
     public User register(UserRegistrationDto registrationDto) {
 
         User user = UserMapper.toUser(registrationDto);
+        user.setPassword(BCryptUtils.encodePassword(user.getPassword()));
         return userRepository.save(user);
 
     }
 
     public User getCurrentUser() {
         return null;
+    }
+
+    public User getUserByUsername(String username) {
+        return userRepository.findByUsername(username).orElseThrow(() -> new UserNotFoundException(username));
     }
 
     public User getUserById(Long id) {

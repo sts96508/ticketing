@@ -2,6 +2,7 @@ package com.jira.ticketing.controller;
 
 import com.jira.ticketing.entity.Ticket;
 import com.jira.ticketing.entity.dto.TicketDto;
+import com.jira.ticketing.entity.dto.TicketResponseDto;
 import com.jira.ticketing.service.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,14 +23,14 @@ public class TicketController {
     }
 
     @PostMapping("/projects/{projectId}/tickets")
-    public ResponseEntity<Ticket> createTicket(@PathVariable Long projectId, @RequestBody TicketDto ticketDto) {
-        Ticket ticket = ticketService.createTicket(projectId, ticketDto);
+    public ResponseEntity<TicketResponseDto> createTicket(@PathVariable Long projectId, @RequestBody TicketDto ticketDto) {
+        TicketResponseDto ticket = ticketService.createTicket(projectId, ticketDto);
         return new ResponseEntity<>(ticket, HttpStatus.CREATED);
     }
 
     @GetMapping("/projects/{projectId}/tickets")
-    public ResponseEntity<List<Ticket>> getAllTickets(@PathVariable Long projectId) {
-        List<Ticket> tickets = ticketService.getAllTickets(projectId);
+    public ResponseEntity<List<TicketResponseDto>> getAllTickets(@PathVariable Long projectId) {
+        List<TicketResponseDto> tickets = ticketService.getAllTickets(projectId);
         return ResponseEntity.ok(tickets);
     }
 
