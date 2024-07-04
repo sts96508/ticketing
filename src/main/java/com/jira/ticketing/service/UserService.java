@@ -1,6 +1,6 @@
 package com.jira.ticketing.service;
 
-import com.jira.ticketing.entity.User;
+import com.jira.ticketing.entity.Users;
 import com.jira.ticketing.entity.dto.UserRegistrationDto;
 import com.jira.ticketing.entity.dto.UserUpdateDto;
 import com.jira.ticketing.exception.UserNotFoundException;
@@ -8,10 +8,7 @@ import com.jira.ticketing.mapper.UserMapper;
 import com.jira.ticketing.repository.UserRepository;
 import com.jira.ticketing.utils.BCryptUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 @Service
 public class UserService {
@@ -22,23 +19,23 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public User register(UserRegistrationDto registrationDto) {
+    public Users register(UserRegistrationDto registrationDto) {
 
-        User user = UserMapper.toUser(registrationDto);
-        user.setPassword(BCryptUtils.encodePassword(user.getPassword()));
-        return userRepository.save(user);
+        Users users = UserMapper.toUser(registrationDto);
+        users.setPassword(BCryptUtils.encodePassword(users.getPassword()));
+        return userRepository.save(users);
 
     }
 
-    public User getCurrentUser() {
+    public Users getCurrentUser() {
         return null;
     }
 
-    public User getUserByUsername(String username) {
+    public Users getUserByUsername(String username) {
         return userRepository.findByUsername(username).orElseThrow(() -> new UserNotFoundException(username));
     }
 
-    public User getUserById(Long id) {
+    public Users getUserById(Long id) {
 //       Optional<User> userOptional = userRepository.findById(id);
 //       if (userOptional.isEmpty()) {
 //           throw new RuntimeException("User not found");
@@ -47,9 +44,9 @@ public class UserService {
         return userRepository.findById(id).orElseThrow(() -> new UserNotFoundException(id));
     }
 
-    public User updateUser(Long id, UserUpdateDto updateDto) {
-        User user = getUserById(id);
-        UserMapper.updateUser(user, updateDto);
-        return userRepository.save(user);
+    public Users updateUser(Long id, UserUpdateDto updateDto) {
+        Users users = getUserById(id);
+        UserMapper.updateUser(users, updateDto);
+        return userRepository.save(users);
     }
 }

@@ -18,7 +18,7 @@ public class Project {
     @Column(nullable = false)
     @Lob
     private String description;
-    @OneToOne
-    @JoinColumn(name="created_by", nullable = false)
-    private User owner;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "created_by", nullable = false)
+    private Users owner;
 }

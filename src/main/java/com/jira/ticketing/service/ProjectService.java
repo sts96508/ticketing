@@ -1,12 +1,11 @@
 package com.jira.ticketing.service;
 
 import com.jira.ticketing.entity.Project;
-import com.jira.ticketing.entity.User;
+import com.jira.ticketing.entity.Users;
 import com.jira.ticketing.entity.dto.ProjectDto;
 import com.jira.ticketing.exception.ProjectNotFoundException;
 import com.jira.ticketing.mapper.ProjectMapper;
 import com.jira.ticketing.repository.ProjectRepository;
-import com.jira.ticketing.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,8 +25,8 @@ public class ProjectService {
 
     public Project createProject(ProjectDto projectDto) {
         Project project = ProjectMapper.toProject(projectDto);
-        User user = userService.getUserById(projectDto.getUserId());
-        project.setOwner(user);
+        Users users = userService.getUserById(projectDto.getUserId());
+        project.setOwner(users);
         return projectRepository.save(project);
     }
 

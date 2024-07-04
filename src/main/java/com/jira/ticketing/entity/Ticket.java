@@ -19,12 +19,12 @@ public class Ticket {
     private String description;
     private TicketStatus status;
     private PriorityLevel priority;
-    @ManyToOne(fetch=FetchType.EAGER)
-    @JoinColumn(name="project_id", nullable = false)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "project_id", nullable = false)
     private Project project;
-    @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="assigned_user_id", nullable = false)
-    private User assignedUser;
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "assigned_user_id", nullable = false)
+    private Users assignedUsers;
 
 }
 

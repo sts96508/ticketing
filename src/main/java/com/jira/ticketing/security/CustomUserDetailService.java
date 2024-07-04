@@ -1,6 +1,6 @@
 package com.jira.ticketing.security;
 
-import com.jira.ticketing.entity.User;
+import com.jira.ticketing.entity.Users;
 import com.jira.ticketing.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -19,10 +19,10 @@ public class CustomUserDetailService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userService.getUserByUsername(username);
+        Users users = userService.getUserByUsername(username);
         return org.springframework.security.core.userdetails.User.builder()
-                .username(user.getUsername())
-                .password(user.getPassword())
+                .username(users.getUsername())
+                .password(users.getPassword())
                 .build();
     }
 }

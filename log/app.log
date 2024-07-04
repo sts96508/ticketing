@@ -62,3 +62,15 @@
 2024-07-02T15:32:04.597+01:00  INFO 23576 --- [ticketing] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
 2024-07-02T15:32:04.600+01:00  INFO 23576 --- [ticketing] [restartedMain] c.jira.ticketing.TicketingApplication    : Started TicketingApplication in 0.508 seconds (process running for 301.945)
 2024-07-02T15:32:04.602+01:00  INFO 23576 --- [ticketing] [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2024-07-02T16:03:43.858+01:00  WARN 23576 --- [ticketing] [HikariPool-2 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-2 - Thread starvation or clock leap detected (housekeeper delta=4m39s121ms).
+2024-07-02T16:14:28.246+01:00  WARN 23576 --- [ticketing] [HikariPool-2 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-2 - Thread starvation or clock leap detected (housekeeper delta=10m44s396ms).
+2024-07-02T16:42:03.048+01:00  WARN 23576 --- [ticketing] [HikariPool-2 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-2 - Thread starvation or clock leap detected (housekeeper delta=27m34s802ms).
+2024-07-02T17:39:40.923+01:00  WARN 23576 --- [ticketing] [HikariPool-2 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-2 - Thread starvation or clock leap detected (housekeeper delta=57m37s875ms).
+2024-07-02T17:42:44.651+01:00  WARN 23576 --- [ticketing] [HikariPool-2 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-2 - Thread starvation or clock leap detected (housekeeper delta=3m3s729ms).
+2024-07-02T18:12:53.703+01:00  WARN 23576 --- [ticketing] [HikariPool-2 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-2 - Thread starvation or clock leap detected (housekeeper delta=30m9s52ms).
+2024-07-02T18:20:44.024+01:00  WARN 23576 --- [ticketing] [HikariPool-2 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-2 - Thread starvation or clock leap detected (housekeeper delta=7m50s320ms).
+2024-07-02T18:36:52.065+01:00  WARN 23576 --- [ticketing] [HikariPool-2 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-2 - Thread starvation or clock leap detected (housekeeper delta=16m8s42ms).
+2024-07-02T18:53:07.048+01:00  WARN 23576 --- [ticketing] [HikariPool-2 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-2 - Thread starvation or clock leap detected (housekeeper delta=16m14s979ms).
+2024-07-02T19:03:38.954+01:00  INFO 23576 --- [ticketing] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-07-02T19:03:38.965+01:00  INFO 23576 --- [ticketing] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown initiated...
+2024-07-02T19:03:38.980+01:00  INFO 23576 --- [ticketing] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown completed.

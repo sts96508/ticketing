@@ -1,6 +1,6 @@
 package com.jira.ticketing.controller;
 
-import com.jira.ticketing.entity.User;
+import com.jira.ticketing.entity.Users;
 import com.jira.ticketing.entity.dto.JwtResponse;
 import com.jira.ticketing.entity.dto.LoginRequest;
 import com.jira.ticketing.entity.dto.UserRegistrationDto;
@@ -28,15 +28,15 @@ public class AuthenticationController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<User> register(@RequestBody UserRegistrationDto registrationDto) {
-        User user = userService.register(registrationDto);
-        return new ResponseEntity<>(user, HttpStatus.CREATED);
+    public ResponseEntity<Users> register(@RequestBody UserRegistrationDto registrationDto) {
+        Users users = userService.register(registrationDto);
+        return new ResponseEntity<>(users, HttpStatus.CREATED);
     }
 
     @PostMapping("/login")
     public ResponseEntity<JwtResponse> login(@RequestBody LoginRequest loginRequest) {
-      JwtResponse jwtResponse = authService.login(loginRequest);
-      return ResponseEntity.ok(jwtResponse);
+        JwtResponse jwtResponse = authService.login(loginRequest);
+        return ResponseEntity.ok(jwtResponse);
     }
 
 }

@@ -2,7 +2,7 @@ package com.jira.ticketing.service;
 
 import com.jira.ticketing.entity.Project;
 import com.jira.ticketing.entity.Ticket;
-import com.jira.ticketing.entity.User;
+import com.jira.ticketing.entity.Users;
 import com.jira.ticketing.entity.dto.TicketDto;
 import com.jira.ticketing.entity.dto.TicketResponseDto;
 import com.jira.ticketing.exception.TicketNotFoundException;
@@ -35,9 +35,9 @@ public class TicketService {
     public TicketResponseDto createTicket(Long projectId, TicketDto ticketDto) {
         Project project = projectService.getProjectById(projectId);
         Ticket ticket = TicketMapper.toTicket(ticketDto);
-        User user = userService.getUserById(ticketDto.getAssignedUserId());
+        Users users = userService.getUserById(ticketDto.getAssignedUserId());
         ticket.setProject(project);
-        ticket.setAssignedUser(user);
+        ticket.setAssignedUsers(users);
         logger.info("about to save ticketDto");
         log.info("this is from slf4j");
         return TicketMapper.toDto(ticketRepository.save(ticket));
@@ -56,11 +56,11 @@ public class TicketService {
     public Ticket updateTicket(Long id, TicketDto ticketDto) {
         Ticket ticket = getTicketById(id);
         TicketMapper.updateTicket(ticket, ticketDto);
-        User user = ticket.getAssignedUser();
-        if ((!Objects.equals(user.getId(), ticketDto.getAssignedUserId()))
+        Users users = ticket.getAssignedUsers();
+        if ((!Objects.equals(users.getId(), ticketDto.getAssignedUserId()))
                 && (Objects.nonNull(ticketDto.getAssignedUserId()))) {
-            User newUser = userService.getUserById(ticketDto.getAssignedUserId());
-            ticket.setAssignedUser(newUser);
+            Users newUsers = userService.getUserById(ticketDto.getAssignedUserId());
+            ticket.setAssignedUsers(newUsers);
 
         }
         return ticketRepository.save(ticket);

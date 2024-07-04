@@ -1,6 +1,6 @@
 package com.jira.ticketing.controller;
 
-import com.jira.ticketing.entity.User;
+import com.jira.ticketing.entity.Users;
 import com.jira.ticketing.entity.dto.UserUpdateDto;
 import com.jira.ticketing.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,21 +19,21 @@ public class UserController {
     }
 
     @GetMapping("/me")
-    public ResponseEntity<User> getCurrentUser() {
-        User user = userService.getCurrentUser();
-        return ResponseEntity.ok(user);
+    public ResponseEntity<Users> getCurrentUser() {
+        Users users = userService.getCurrentUser();
+        return ResponseEntity.ok(users);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<User> getUserById(@PathVariable Long id) {
-    User user = userService.getUserById(id);
-    return ResponseEntity.ok(user);
+    public ResponseEntity<Users> getUserById(@PathVariable Long id) {
+        Users users = userService.getUserById(id);
+        return ResponseEntity.ok(users);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody UserUpdateDto updateDto) {
-        User user = userService.updateUser(id, updateDto);
-        return ResponseEntity.ok(user);
+    public ResponseEntity<Users> updateUser(@PathVariable Long id, @RequestBody UserUpdateDto updateDto) {
+        Users users = userService.updateUser(id, updateDto);
+        return ResponseEntity.ok(users);
     }
 
 }

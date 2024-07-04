@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class AuthService {
-
     public JwtResponse login(LoginRequest loginRequest) {
         return null;
     }
