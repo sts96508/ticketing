@@ -41,6 +41,7 @@ public class UserService {
 //           throw new RuntimeException("User not found");
 //       }
 //       return userOptional.get();
+
         return userRepository.findById(id).orElseThrow(() -> new UserNotFoundException(id));
     }
 

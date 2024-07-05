@@ -2,6 +2,7 @@ package com.jira.ticketing.service;
 
 import com.jira.ticketing.entity.Users;
 import com.jira.ticketing.entity.dto.UserRegistrationDto;
+import com.jira.ticketing.exception.UserNotFoundException;
 import com.jira.ticketing.mapper.UserMapper;
 import com.jira.ticketing.repository.UserRepository;
 import com.jira.ticketing.utils.AppConstants;
@@ -14,8 +15,11 @@ import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.Optional;
+
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.*;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -57,6 +61,21 @@ class UserServiceTest {
 
     @Test
     void getUserById() {
+        Users user = new Users();
+        user.setId(22L);
+        user.setEmail("ss@dd");
+        when(userRepository.findById(anyLong())).thenReturn(Optional.of(user));
+        Users result = userService.getUserById(22L);
+        assertNotNull(result);
+        assertEquals(user.getId(), result.getId());
+        verify(userRepository).findById(eq(22L));
+    }
+
+    @Test
+    void getUserByIdNotFound() {
+        when(userRepository.findById(anyLong())).thenReturn(Optional.ofNullable(null));
+        UserNotFoundException userNotFoundException = assertThrows(UserNotFoundException.class, () -> userService.getUserById(44L));
+        assertEquals("user with id " + 44 + " not found", userNotFoundException.getMessage());
     }
 
     @Test

@@ -4,6 +4,7 @@ import com.jira.ticketing.entity.enums.PriorityLevel;
 import com.jira.ticketing.entity.enums.TicketStatus;
 
 public class AppConstants {
+
     public static final String PROJECTNAME = "testProject";
     public static final String PROJECTDESCRIPTION = "random prj";
 
