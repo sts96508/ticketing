@@ -24,6 +24,5 @@ public class UserMapper {
         if (userUpdateDto.getRole() != null) {
             users.setRole(userUpdateDto.getRole());
         }
-
     }
 }

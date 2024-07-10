@@ -24,7 +24,6 @@ public class UserService {
         Users users = UserMapper.toUser(registrationDto);
         users.setPassword(BCryptUtils.encodePassword(users.getPassword()));
         return userRepository.save(users);
-
     }
 
     public Users getCurrentUser() {
