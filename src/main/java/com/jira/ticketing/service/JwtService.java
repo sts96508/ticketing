@@ -25,7 +25,7 @@ public class JwtService {
     }
 
     public String generateToken(String username) {
-        LocalDateTime expirationTime = LocalDateTime.now().plusMinutes(1);
+        LocalDateTime expirationTime = LocalDateTime.now().plusMinutes(10);
         return Jwts.builder()
                 .subject(username)
                 .expiration(Date.from(expirationTime.atZone(java.time.ZoneId.systemDefault()).toInstant()))
